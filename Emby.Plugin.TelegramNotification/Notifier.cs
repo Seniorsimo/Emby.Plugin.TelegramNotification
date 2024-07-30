@@ -40,12 +40,19 @@ namespace Emby.Plugin.TelegramNotification
             options.TryGetValue("BotToken", out string botToken);
             options.TryGetValue("ChatID", out string chatID);
             options.TryGetValue("DisableDescription", out string disableDescription);
+            options.TryGetValue("EnableExternalMetadata", out string enableExternalMetadata);
 
             string message = (request.Title);
 
+            if (enableExternalMetadata == "true" && request.Item.ExternalUrls != null && request.Item.ExternalUrls.Length > 0)
+            {
+                string externalUrl = request.Item.ExternalUrls[0].Url;
+                message = (message + "\n\n" + externalUrl);
+            }
+
             if (string.IsNullOrEmpty(request.Description) == false && disableDescription != "true")
             {
-                message = (request.Title + "\n\n" + request.Description); 
+                message = (message + "\n\n" + request.Description); 
             }
 
             if (message.Length > 4096)

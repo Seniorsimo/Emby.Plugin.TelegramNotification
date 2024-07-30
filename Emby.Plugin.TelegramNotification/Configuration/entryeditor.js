@@ -10,6 +10,7 @@
         entry.Options.BotToken = context.querySelector('.txtTeleGramBotKey').value;
         entry.Options.ChatID = context.querySelector('.txtTeleGramChatID').value;
         entry.Options.DisableDescription = '' + context.querySelector('.chkDisableDescription').checked;
+        entry.Options.EnableExternalMetadata = '' + context.querySelector('.chkEnableExternalMetadata').checked;
     };
 
     EntryEditor.setFormValues = function (context, entry) {
@@ -18,6 +19,7 @@
         context.querySelector('.txtTeleGramBotKey').value = entry.Options.BotToken || '';
         context.querySelector('.txtTeleGramChatID').value = entry.Options.ChatID || '';
         context.querySelector('.chkDisableDescription').checked = entry.Options.DisableDescription == "true" || false;
+        context.querySelector('.chkEnableExternalMetadata').checked = entry.Options.EnableExternalMetadata == "true" || false;
     };
 
     EntryEditor.loadTemplate = function (context) {
